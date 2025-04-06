@@ -1,0 +1,20 @@
+{
+  "name": "team-project-cse-341",
+  "version": "1.0.0",
+  "description": "CSE-341 Final Team Project",
+  "homepage": "https://github.com/cvargas306/team-project-cse-341#readme",
+  "bugs": {
+    "url": "https://github.com/cvargas306/team-project-cse-341/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvargas306/team-project-cse-341.git"
+  },
+  "license": "ISC",
+  "author": "Carlos Vargas",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
