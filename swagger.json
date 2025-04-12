@@ -203,36 +203,63 @@
         "tags": [
           "movies"
         ],
-        "description": "",
+        "description": "Create a new movie",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
+                "title": {
+                  "type": "string",
+                  "example": "The Godfather"
                 },
-                "lastName": {
-                  "example": "any"
+                "releaseYear": {
+                  "type": "integer",
+                  "example": 1972
                 },
-                "email": {
-                  "example": "any"
+                "genre": {
+                  "type": "string",
+                  "example": "Crime"
                 },
-                "favoriteColor": {
-                  "example": "any"
+                "rating": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 9.2
                 },
-                "birthday": {
-                  "example": "any"
+                "duration": {
+                  "type": "integer",
+                  "example": 175
+                },
+                "mainActor": {
+                  "type": "string",
+                  "example": "Marlon Brando"
+                },
+                "directorName": {
+                  "type": "string",
+                  "example": "Francis Ford Coppola"
                 }
-              }
+              },
+              "required": [
+                "title",
+                "releaseYear",
+                "genre",
+                "rating",
+                "duration",
+                "mainActor",
+                "directorName"
+              ]
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "201": {
+            "description": "Movie created successfully"
+          },
+          "412": {
+            "description": "Validation failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -267,7 +294,7 @@
         "tags": [
           "movies"
         ],
-        "description": "",
+        "description": "Update an existing movie",
         "parameters": [
           {
             "name": "id",
@@ -278,31 +305,55 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
-                  "example": "any"
+                "title": {
+                  "type": "string",
+                  "example": "The Godfather"
                 },
-                "lastName": {
-                  "example": "any"
+                "releaseYear": {
+                  "type": "integer",
+                  "example": 1972
                 },
-                "email": {
-                  "example": "any"
+                "genre": {
+                  "type": "string",
+                  "example": "Crime"
                 },
-                "favoriteColor": {
-                  "example": "any"
+                "rating": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 9.2
                 },
-                "birthday": {
-                  "example": "any"
+                "duration": {
+                  "type": "integer",
+                  "example": 175
+                },
+                "mainActor": {
+                  "type": "string",
+                  "example": "Marlon Brando"
+                },
+                "directorName": {
+                  "type": "string",
+                  "example": "Francis Ford Coppola"
                 }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "200": {
+            "description": "Movie updated successfully"
+          },
+          "400": {
+            "description": "Invalid ID format"
+          },
+          "404": {
+            "description": "Movie not found or no changes made"
+          },
+          "412": {
+            "description": "Validation failed"
           },
           "500": {
             "description": "Internal Server Error"

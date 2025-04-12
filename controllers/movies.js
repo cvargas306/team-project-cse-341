@@ -37,10 +37,10 @@ const createMovie = async (req, res) => {
         title: req.body.title,
         releaseYear: parseInt(req.body.releaseYear, 10),
         genre: req.body.genre,
-        duration: req.body.duration,
-        rating: req.body.rating,
-        synopsis: req.body.synopsis,
-        directorId: new ObjectId(req.body.directorId) // assumes front-end sends director _id
+        rating: parseFloat(req.body.rating), // Changed to float for rating
+        duration: parseInt(req.body.duration, 10),
+        mainActor: req.body.mainActor,
+        directorName: req.body.directorName
     };
     try {
         const response = await mongodb.getDatabase().db().collection('movies').insertOne(movie);
@@ -64,10 +64,10 @@ const updateMovie = async (req, res) => {
         title: req.body.title,
         releaseYear: parseInt(req.body.releaseYear, 10),
         genre: req.body.genre,
-        duration: req.body.duration,
-        rating: req.body.rating,
-        synopsis: req.body.synopsis,
-        directorId: new ObjectId(req.body.directorId)
+        rating: parseFloat(req.body.rating),
+        duration: parseInt(req.body.duration, 10),
+        mainActor: req.body.mainActor,
+        directorName: req.body.directorName
     };
     try {
         const response = await mongodb.getDatabase().db().collection('movies').replaceOne({ _id: movieId }, movie);

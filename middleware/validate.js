@@ -35,10 +35,10 @@ const saveMovie = (req, res, next) => {
         title: isUpdate ? 'string' : 'required|string',
         releaseYear: isUpdate ? 'numeric' : 'required|numeric',
         genre: isUpdate ? 'string' : 'required|string',
-        rating: isUpdate ? 'numeric' : 'required|numeric',
+        rating: isUpdate ? 'numeric' : 'required|numeric', // Rating must be a number
         duration: isUpdate ? 'numeric' : 'required|numeric',
-        language: isUpdate ? 'string' : 'required|string',
-        directorId: isUpdate ? 'string' : 'required|string' // MongoDB ObjectId as string
+        mainActor: isUpdate ? 'string' : 'required|string',
+        directorName: isUpdate ? 'string' : 'required|string' // MongoDB ObjectId as string
     };
 
     validator(req.body, validationRule, {}, (err, status) => {
