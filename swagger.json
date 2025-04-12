@@ -138,16 +138,22 @@
                   "example": "any"
                 },
                 "awards": {
-                  "example": "any"
+                  "example": [
+                    "any"
+                  ]
                 },
                 "activeYears": {
                   "example": "any"
                 },
                 "genres": {
-                  "example": "any"
+                  "example": [
+                    "any"
+                  ]
                 },
                 "notableWorks": {
-                  "example": "any"
+                  "example": [
+                    "any"
+                  ]
                 }
               }
             }
