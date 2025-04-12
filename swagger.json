@@ -131,7 +131,8 @@
                   "example": "any"
                 },
                 "birthYear": {
-                  "example": "any"
+                  "type": "integer",
+                  "example": 0
                 },
                 "nationality": {
                   "example": "any"
@@ -214,32 +215,32 @@
               "properties": {
                 "title": {
                   "type": "string",
-                  "example": "The Godfather"
+                  "example": "any"
                 },
                 "releaseYear": {
                   "type": "integer",
-                  "example": 1972
+                  "example": 0
                 },
                 "genre": {
                   "type": "string",
-                  "example": "Crime"
+                  "example": "any"
                 },
                 "rating": {
                   "type": "number",
                   "format": "float",
-                  "example": 9.2
+                  "example": 0.0
                 },
                 "duration": {
                   "type": "integer",
-                  "example": 175
+                  "example": 0
                 },
                 "mainActor": {
                   "type": "string",
-                  "example": "Marlon Brando"
+                  "example": "any"
                 },
                 "directorName": {
                   "type": "string",
-                  "example": "Francis Ford Coppola"
+                  "example": "any"
                 }
               },
               "required": [
@@ -311,32 +312,32 @@
               "properties": {
                 "title": {
                   "type": "string",
-                  "example": "The Godfather"
+                  "example": "any"
                 },
                 "releaseYear": {
                   "type": "integer",
-                  "example": 1972
+                  "example": 0
                 },
                 "genre": {
                   "type": "string",
-                  "example": "Crime"
+                  "example": "any"
                 },
                 "rating": {
                   "type": "number",
                   "format": "float",
-                  "example": 9.2
+                  "example": 0.0
                 },
                 "duration": {
                   "type": "integer",
-                  "example": 175
+                  "example": 0
                 },
                 "mainActor": {
                   "type": "string",
-                  "example": "Marlon Brando"
+                  "example": "any"
                 },
                 "directorName": {
                   "type": "string",
-                  "example": "Francis Ford Coppola"
+                  "example": "any"
                 }
               }
             }
