@@ -54,7 +54,57 @@ const saveMovie = (req, res, next) => {
     });
 };
 
+const saveActor = (req, res, next) => {
+    console.log("Received actor body:", req.body);
+    const isUpdate = req.method === 'PUT';
+
+    const validationRule = {
+        name: isUpdate ? 'string' : 'required|string',
+        birthYear: isUpdate ? 'numeric' : 'required|numeric',
+        nationality: isUpdate ? 'string' : 'required|string',
+        movies: 'array' 
+    };
+
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
+const saveUser = (req, res, next) => {
+    console.log("Received user body:", req.body);
+    const isUpdate = req.method === 'PUT';
+
+    const validationRule = {
+        username: isUpdate ? 'string' : 'required|string',
+        email: isUpdate ? 'email' : 'required|email',
+        role: isUpdate ? 'string' : 'required|string'
+    };
+
+    validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(412).send({
+                success: false,
+                message: 'Validation failed',
+                data: err
+            });
+        } else {
+            next();
+        }
+    });
+};
+
+
 module.exports = {
     saveDirector,
-    saveMovie
+    saveMovie,
+    saveActor,
+    saveUser
 };
