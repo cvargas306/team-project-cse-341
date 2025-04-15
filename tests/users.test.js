@@ -8,4 +8,11 @@ describe('Users API', () => {
         expect(Array.isArray(res.body)).toBe(true);
     });
 
+    it('should return a single user by ID', async () => {
+        const userId = '67fe02e3529ef515cc3e62e2'; // replace with a valid user ID
+        const res = await request(baseURL).get(`/users/${userId}`);
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toHaveProperty('email');
+      });
+
 });
