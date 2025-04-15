@@ -9,7 +9,7 @@ describe('Directors API', () => {
     });
 
     it('should return a single director by ID', async () => {
-        const directorId = '67f9e2afd6d3da0c8a2d2395'; 
+        const directorId = '67f215ed01a6bf0d48aa47e7'; 
         const res = await request(baseURL).get(`/directors/${directorId}`);
         expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('name');

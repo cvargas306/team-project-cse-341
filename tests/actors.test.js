@@ -9,7 +9,7 @@ describe('Actors API', () => {
     });
 
     it('should return a single actor by ID', async () => {
-        const actorId = '67fb3bb4f34f27c580351f23'; 
+        const actorId = '67fb39e9f34f27c580351f20';
         const res = await request(baseURL).get(`/actors/${actorId}`);
         expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('name');
