@@ -1,5 +1,6 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
+const bcrypt = require('bcrypt');
 
 const getAllUsers = async (req, res) => {
     //#swagger.tags=['users']
@@ -31,16 +32,24 @@ const getSingleUser = async (req, res) => {
 
 const createUser = async (req, res) => {
     //#swagger.tags=['users']
-    const user = {
-        username: req.body.username,
-        email: req.body.email,
-        role: req.body.role
-    };
     try {
-        const result = await mongodb.getDatabase().db().collection('users').insertOne(user);
-        res.status(201).json({ message: 'User created', userId: result.insertedId });
+        const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 = salt rounds
+
+        const user = {
+            username: req.body.username,
+            email: req.body.email,
+            password: hashedPassword, // Save the hashed password
+            role: req.body.role
+        };
+
+        const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
+        if (response.acknowledged) {
+            res.status(201).json({ message: 'User created successfully', userId: response.insertedId });
+        } else {
+            res.status(500).json({ error: 'Failed to create user' });
+        }
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message || 'Error creating user' });
     }
 };
 
@@ -85,10 +94,33 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    //#swagger.tags=['users']
+    try {
+        const user = await mongodb.getDatabase().db().collection('users').findOne({ email: req.body.email });
+
+        if (!user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
+
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if (!match) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        // Later you can set a session or return a token here
+        res.status(200).json({ message: 'Login successful', userId: user._id });
+    } catch (error) {
+        res.status(500).json({ error: error.message || 'Login error' });
+    }
+};
+
+
 module.exports = {
     getAllUsers,
     getSingleUser,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 };

@@ -15,4 +15,7 @@ router.put('/:id', isAuthenticated, validation.saveUser, usersController.updateU
 
 router.delete('/:id', isAuthenticated, usersController.deleteUser);
 
+router.post('/login', usersController.loginUser);
+
+
 module.exports = router;
