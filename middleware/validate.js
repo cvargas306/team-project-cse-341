@@ -85,6 +85,7 @@ const saveUser = (req, res, next) => {
     const validationRule = {
         username: isUpdate ? 'string' : 'required|string',
         email: isUpdate ? 'email' : 'required|email',
+        password: isUpdate ? 'string' : 'required|string|min:6',
         role: isUpdate ? 'string' : 'required|string'
     };
 
