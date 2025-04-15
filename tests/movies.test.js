@@ -9,7 +9,7 @@ describe('Movies API', () => {
     });
 
     it('should return a single movie by ID', async () => {
-        const movieId = '67f2192a01a6bf0d48aa47ee'; // Replace with a valid _id from your database
+        const movieId = '67f2192a01a6bf0d48aa47ee';
         const res = await request(baseURL).get(`/movies/${movieId}`);
         expect(res.statusCode).toBe(200);
         expect(res.body).toHaveProperty('title');
