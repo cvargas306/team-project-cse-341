@@ -1,6 +1,7 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const getAllUsers = async (req, res) => {
     //#swagger.tags=['users']
@@ -108,8 +109,13 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        // Later you can set a session or return a token here
-        res.status(200).json({ message: 'Login successful', userId: user._id });
+        const token = jwt.sign(
+            { userId: user._id, email: user.email, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+          );
+        
+        res.status(200).json({ message: 'Login successful', token, userId: user._id });
     } catch (error) {
         res.status(500).json({ error: error.message || 'Login error' });
     }

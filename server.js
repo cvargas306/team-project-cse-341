@@ -9,6 +9,8 @@ const GitHubStrategy = require('passport-github2').Strategy;
 require('dotenv').config();
 const MongoStore = require('connect-mongo');
 
+const usersRoutes = require('./routes/users');
+
 const port = process.env.PORT || 3000;
 
 app
@@ -44,6 +46,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/', require('./routes'));
+
+app.use('/users', usersRoutes);
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
